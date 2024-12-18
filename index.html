@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions for Managing C and D Waste</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #b081e2, #aac3ed);
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 1s ease-in-out;
+            letter-spacing: 1px;
+            color: #fff;
+            perspective: 1000px; /* Adding perspective for 3D effect */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        /* 3D Effect for Forms */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        .home-container {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(75, 59, 59, 0.1);
+            font-size: 18px;
+            color: #333;
+            letter-spacing: 1px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .home-container:hover {
+            transform: rotateY(10deg); /* Adding 3D hover effect */
+        }
+
+        .section-title {
+            color: #78a5f3;
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .content {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .pie-chart {
+            width: 100%;
+            height: 400px;
+            margin-top: 30px;
+        }
+
+        /* Video and Image styling */
+        .media {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .media img, .media iframe {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Input fields and buttons with 3D effect */
+        .input-group input,
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #333;
+            border: 1px solid #666;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus,
+        button:hover {
+            background: #d6f7d6;
+            border: 1px solid #c4ecca;
+            box-shadow: 0 8px 15px rgb(236, 215, 215);
+            transform: translateY(-4px);
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #b2c6e8;
+            border: none;
+            color: white;
+            font-size: 18px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            perspective: 1000px; /* Adding perspective to input fields */
+        }
+
+        /* Switch Form Links */
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .switch-form a {
+            color: #4CAF50;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .switch-form a:hover {
+            color: #3b4c3c;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .home-container {
+                padding: 20px;
+            }
+
+            .input-group input {
+                padding: 10px;
+            }
+        }
+
+        /* 3D Button Hover Effect */
+        button:active {
+            transform: translateY(2px); /* Slight press effect */
+            box-shadow: none;
+        }
+
+        /* Excel Table with 3D Effect */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            transform-style: preserve-3d; /* Applying 3D effect on the table */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f3f3f3;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+            transform: scale(1.05); /* Scale effect for rows */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #b2c6e8;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #78a5f3;
+            transform: translateY(-4px);
+        }
+
+        input[type="file"] {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .case-study {
+            margin-bottom: 60px; /* Adjust the space after each case study */
+        }
+
+        h2 {
+            margin-bottom: 200px;  /* Adjust the value to your liking */
+        }
+
+        #excel-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 -4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #excel-data-table th, #excel-data-table td {
+            padding: 12px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #excel-data-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        #excel-data-table tr:hover {
+            background-color: #f1f1f1;
+            transform: translateY(-2px);
+            transition: transform 0.2s ease;
+        }
+
+        #excel-data-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Page -->
+        <div class="login-container form-container" id="login-container">
+            <h1>Login to C&D Waste Management</h1>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="switch-form">
+                <p>Don't have an account? <a href="#" id="show-register">Register here</a></p>
+            </div>
+        </div>
+
+        <!-- Register Page -->
+        <div class="register-container form-container" id="register-container" style="display: none;">
+            <h1>Register for C&D Waste Management</h1>
+            <form id="register-form">
+                <div class="input-group">
+                    <label for="new-username">Username</label>
+                    <input type="text" id="new-username" name="new-username" required>
+                </div>
+                <div class="input-group">
+                    <label for="new-password">Password</label>
+                    <input type="password" id="new-password" name="new-password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <div class="switch-form">
+                <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
+            </div>
+        </div>
+
+        <!-- Home Page Content (Hidden initially) -->
+        <div class="home-container" id="home-container">
+            <h1>Innovative Solutions for Managing Construction and Demolition Waste</h1>
+            <div class="content">
+                <h2 class="section-title">Introduction </h2>
+                <p>The construction and demolition (C&D) industry plays a crucial role in global economic development, but it also generates a significant amount of waste that can have serious environmental and financial impacts. Traditional waste management practices often result in materials being sent to landfills, leading to resource depletion and environmental harm. However, with increasing awareness about sustainability, new and innovative solutions for managing C&D waste are transforming the industry.</p>
+            
+                <p>These solutions aim to reduce, reuse, and recycle construction and demolition materials, minimizing waste and promoting a circular economy. From advanced recycling technologies and mobile crushing systems to waste-to-energy plants and sustainable building materials, innovative strategies are helping construction projects become more eco-friendly and cost-effective. These solutions not only reduce the environmental footprint of construction and demolition but also foster greater efficiency, reduce costs, and support the global shift towards more sustainable practices in the built environment.</p>
+            
+                <p>As the demand for sustainable construction grows, adopting these innovative approaches is becoming essential for companies looking to stay ahead in the industry while contributing positively to environmental conservation. The following examples highlight some of the most effective and cutting-edge solutions being implemented worldwide.</p>
+                <video width="560" height="315" controls>
+                    <source src="C:\Users\user\Documents\ipr projectros\two.123.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+            </div>
+            
+            
+            <div class="content">
+                <h2 class="section-title">What is C&D Waste?</h2>
+                <p>C&D waste, or construction and demolition waste, includes materials such as concrete, wood, metals, glass, and plastics that are generated during construction, renovation, and demolition activities. Proper management of C&D waste is crucial for reducing environmental impact, conserving resources, and improving recycling and reuse of materials.</p>
+            </div>
+
+            <!-- Pie Chart or Stats Section -->
+            <div class="content">
+                <h2 class="section-title">C&D Waste Statistics</h2>
+                <p>According to recent reports, C&D waste constitutes approximately 30% of all global waste, with concrete and wood being the major contributors. Efficient management can significantly reduce landfill usage and pollution.</p>
+                <div id="pie-chart" class="pie-chart">
+                    <iframe width="100%" height="400px" src="C:\Users\user\Documents\ipr projectros\three_123.jpg"></iframe>
+                </div>
+            </div>
+
+            <!-- Types of C&D Waste -->
+            <div class="content">
+                <h2 class="section-title">Types of C&D Waste</h2>
+                <ul>
+                    <li>Concrete and Cement</li>
+                    <li>Wood</li>
+                    <li>Metals (steel, aluminum)</li>
+                    <li>Glass</li>
+                    <li>Plastics</li>
+                    <li>Asphalt</li>
+                    <div class="content">
+                        <h2 class="section-title">C and D Waste Generation </h2>
+                        <p>Construction and demolition (C&D) materials are generated when new structures are built and when existing structures
+                            are renovated or demolished.Structures include all residential and non-residential buildings, as well as public works
+                            projects, such as road, bridges and dams [10]. Materials resulting from construction and demolition of buildings and
+                            infrastructure constitute a significant amount (10-15%) of the total municipal solid waste stream [4].The UK generated
+                            200 million tonnes of total waste in 2012. Half of this (50%) was generated by Construction, demolition, renovation
+                            and refurbishment works. Commercial and industrial activities generated almost a quarter (24%), with households
+                            responsible for a further 14%[11]. For the most part, construction wastes are largely slothful. The key challenge is that
+                            construction waste is bulky, solid to compress and often occupies space in overstrained and confined municipal landfill
+                            [8]. Reducing C&D waste is a priority for the European Union and the UK Government and there are many new
+                            regulations, measures and targets to reduce waste within the construction industry [11].Figure 1 below shows both
+                            construction and demolition waste composition at various stages in the UK in 2014. The key challenges with the
+                            generation of large amount of C&D waste on many construction sites is to apply operations such as reuse and recycle
+                            techniques which final leads provide sustainability in construction and demolition works and often led to the
+                            development of new products. 
+                        </p>
+                        <h3>Construction Waste Composition</h3>
+                        <div id="pie-chart" class="pie-chart">
+                            <iframe width="100%" height="400px" src="C:\Users\user\Documents\ipr projectros\one_123.jpg"></iframe>
+                        </div>
+                        <h3>Demolition Waste Composition </h3>
+                        <div id="pie-chart" class="pie-chart">
+                            <iframe width="100%" height="400px" src="C:\Users\user\Documents\ipr projectros\two_123.jpg"></iframe>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="content">
+                        <h2 class="section-title">Upload Excel Data with 3D Effect</h2>
+                        <p>Upload an Excel file to visualize and manage your construction and demolition waste data. The data will be displayed in a dynamic table with a 3D effect.</p>
+                    
+                        <!-- File Input and Upload Button -->
+                        <input type="file" id="excel-file" accept=".xlsx, .xls" />
+                        <button onclick="readExcel()">Upload and Display Data</button>
+                    
+                        <!-- Table to Display Excel Data -->
+<div class="content" id="excel-data-container" style="display: none;">
+    <h2>Excel Data Displayed with 3D Effect</h2>
+    <table id="excel-data-table">
+        <thead>
+            <tr>
+                <th>Waste Type</th>
+                <th>Amount</th>
+                <th>Recycling Method</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be dynamically inserted here -->
+        </tbody>
+    </table>
+</div>
+
+
+            <!-- Importance of Waste Management -->
+            <div class="content">
+                <h2 class="section-title">Why Manage C&D Waste?</h2>
+                <p>Effective management of C&D waste reduces environmental pollution, conserves natural resources, and creates new business opportunities in recycling and reuse industries. It also complies with legal requirements and helps reduce disposal costs.</p>
+            </div>
+
+            <!-- Innovative Solutions -->
+            <div class="content">
+                <h2 class="section-title">Innovative Solutions for C&D Waste Management</h2>
+                <p>Innovations like mobile crushers, recycling machines, and smart technologies for sorting waste can drastically improve the recycling rate of C&D materials. Some companies are even experimenting with turning waste materials into valuable resources such as recycled aggregates for road construction.</p>
+            </div>
+
+            <!-- Case Studies and Success Stories -->
+            <div class="content">
+                <h2 class="section-title">Case Studies and Success Stories</h2>
+                <p>In many cities worldwide, C&D waste management programs have led to successful recycling rates exceeding 70%.</p>
+
+                <!-- Case Study 1: Recycling and Reusing C&D Waste in Sweden -->
+                <div class="case-study">
+                    <h3>1. Recycling and Reusing C&D Waste in Sweden</h3>
+                    <strong>Project Overview:</strong>
+                    <p>Sweden has long been a pioneer in waste management, and its approach to C&D waste is a great example of innovation. The country has implemented comprehensive systems for recycling and reusing materials from construction and demolition projects. In fact, Sweden recycles over 99% of its C&D waste, with concrete, bricks, and wood being reused or recycled into new products.</p>
+        
+                    <strong>Innovative Solution:</strong>
+                    <p>Sweden uses advanced sorting and processing technologies to separate valuable materials from construction and demolition debris. Mobile crushers and separators are employed on construction sites to sort concrete and metals, making them easier to recycle. The country also promotes the use of sustainable building materials like recycled steel, cement alternatives, and recycled aggregates.</p>
+        
+                    <strong>Success Story:</strong>
+                    <p>In Gothenburg, a large-scale development project involved the demolition of an old building, and the waste was processed for reuse. More than 90% of the C&D waste was either recycled or repurposed, significantly reducing the environmental impact of the project. Additionally, the reuse of materials led to cost savings for the developers and provided local jobs in the recycling and construction sectors.</p>
+                </div>
+
+                <!-- Case Study 2: The Green Building Council's Zero Waste Initiative – USA -->
+                <div class="case-study">
+                    <h3>2. The Green Building Council's Zero Waste Initiative – USA</h3>
+                    <strong>Project Overview:</strong>
+                    <p>The U.S. Green Building Council (USGBC) has supported numerous initiatives that encourage reducing C&D waste through certifications such as LEED (Leadership in Energy and Environmental Design). One of the main goals is to achieve zero waste on construction sites, which aligns with sustainability and reducing landfill waste.</p>
+        
+                    <strong>Innovative Solution:</strong>
+                    <p>To help achieve zero waste, USGBC developed tools that enable construction projects to track waste generation and diversion. This includes employing waste diversion plans, ensuring construction debris is sorted on-site, and utilizing specialized dumpsters for recycling or repurposing materials like concrete, wood, and metals.</p>
+        
+                    <strong>Success Story:</strong>
+                    <p>The renovation of the historic San Francisco International Airport (SFO) is a great example of implementing zero waste principles. During the renovation, 90% of the construction and demolition waste was diverted from landfills through recycling and reuse. The project earned a LEED Gold certification, demonstrating how integrating waste management strategies into the planning and design phases can lead to sustainable outcomes.</p>
+                </div>
+
+                <!-- Case Study 3: Circular Economy Approach – Netherlands -->
+                <div class="case-study">
+                    <h3>3. Circular Economy Approach – Netherlands</h3>
+                    <strong>Project Overview:</strong>
+                    <p>The Netherlands is embracing a circular economy model, where C&D waste is seen as a resource rather than a waste stream. The goal is to reduce the consumption of raw materials by reusing construction waste materials in new projects.</p>
+        
+                    <strong>Innovative Solution:</strong>
+                    <p>In this approach, construction companies in the Netherlands use building materials such as old bricks, concrete, and wood from demolished structures in new projects. Recycled aggregates are used in the production of new concrete, while deconstructed steel is repurposed in new buildings.</p>
+        
+                    <strong>Success Story:</strong>
+                    <p>A notable project is the "Circular Hotel" in the city of Amsterdam, which was constructed using primarily recycled materials from demolition sites. The hotel’s walls were built using recycled bricks, and its steel was sourced from old industrial sites. The hotel is a testament to how a circular economy model can reduce waste, save costs, and promote sustainability in the construction industry. This project has become a leading example of the potential of C&D waste management in fostering a circular economy.</p>
+                </div>
+
+                <!-- Case Study 4: C&D Waste-to-Energy – United Kingdom -->
+                <div class="case-study">
+                    <h3>4. C&D Waste-to-Energy – United Kingdom</h3>
+                    <strong>Project Overview:</strong>
+                    <p>The UK has been exploring energy recovery from C&D waste as a means to divert waste from landfills while also addressing energy needs.</p>
+        
+                    <strong>Innovative Solution:</strong>
+                    <p>Some companies in the UK have implemented technologies that convert C&D waste into energy. Incineration of non-recyclable waste from C&D materials, such as certain plastics and wood, generates electricity and heat. Waste-to-energy plants have been established specifically to process C&D waste, providing a sustainable source of energy.</p>
+        
+                    <strong>Success Story:</strong>
+                    <p>The "Waste-to-Energy" project at the Gateway Energy Centre in Essex, UK, involves the processing of both municipal and C&D waste to generate electricity. The plant processes around 250,000 tons of waste annually, and much of the C&D debris is used to generate power. The project helps reduce landfill use while contributing to the UK's renewable energy goals.</p>
+               </div>
+
+                 <!-- Case Study 5: Construction and Demolition Waste Recycling by TerraCycle – USA -->
+                <div class="case-study">
+                    <h3>5. Construction and Demolition Waste Recycling by TerraCycle – USA</h3>
+                    <strong>Project Overview:</strong>
+                    <p>TerraCycle, a global leader in waste recycling, launched a program specifically for construction and demolition waste. The company has pioneered solutions to recycle difficult-to-manage materials like plastics and other non-recyclable C&D waste.</p>
+        
+                    <strong>Innovative Solution:</strong>
+                    <p>TerraCycle developed a "Zero Waste Box" program for construction companies to collect and send hard-to-recycle waste, such as PVC pipes, foam insulation, and plastic coatings, to their facilities for recycling. This program helped reduce the environmental footprint of construction waste by ensuring that materials typically considered non-recyclable are reused and processed into new products.</p>
+        
+                    <strong>Success Story:</strong>
+                    <p>A large construction project in New Jersey used TerraCycle's services to manage waste. Over 50% of the construction waste, which would have otherwise ended up in a landfill, was sent to TerraCycle for recycling. The project's waste reduction strategy earned it recognition for its contribution to sustainable building practices.</p>
+                </div>
+
+                <!-- Case Study 6: Recycling Concrete with Mobile Crushing – Australia -->
+                <div class="case-study">
+                    <h3>6. Recycling Concrete with Mobile Crushing – Australia</h3>
+                    <strong>Project Overview:</strong>
+                    <p>In Australia, the growing demand for sustainable building materials led to the development of mobile crushing systems that allow construction and demolition waste, particularly concrete, to be processed on-site.</p>
+        
+                    <strong>Innovative Solution:</strong>
+                    <p>Mobile crushers are used to break down concrete into smaller pieces, which can then be used as aggregate for new construction projects. This significantly reduces transportation costs and emissions associated with moving waste to recycling facilities. The crushed concrete is used as sub-base material for roads, pavements, and foundations.</p>
+        
+                    <strong>Success Story:</strong>
+                    <p>A large infrastructure project in Sydney used mobile crushers to process the concrete waste from demolished structures. This initiative reduced transportation costs and allowed for the reuse of over 60% of the concrete waste directly in new construction, helping reduce the environmental footprint of the project.</p>
+                </div>
+           </div>
+
+
+            <!-- Best Practices for C&D Waste Management -->
+            <div class="content">
+                <h2 class="section-title">Best Practices for C&D Waste Management</h2>
+                <ul>
+                    <li>Conduct waste audits before starting construction or demolition projects.</li>
+                    <li>Prioritize the reuse of materials wherever possible.</li>
+                    <li>Implement waste segregation at source.</li>
+                    <li>Utilize recycled materials in new projects.</li>
+                </ul>
+            </div>
+
+            <!-- Collaboration and Stakeholders -->
+            <div class="content">
+                <h2 class="section-title">Collaboration and Stakeholders</h2>
+                <p>Government bodies, construction firms, recycling companies, and waste management experts must collaborate to create sustainable systems for managing C&D waste effectively.</p>
+            </div>
+
+            <!-- Interactive Tools and Resources -->
+            <div class="container">
+                <h2>Interactive Tools and Resources for Managing Construction and Demolition Waste</h2>
+                <h3>Explore Our Interactive Waste Calculator</h3>
+                <p>Estimate your construction waste and find appropriate recycling options to reduce your environmental footprint. This tool will guide you through the process and suggest the best waste management strategies based on your project needs.</p>
+                
+                <p>Click below to access the waste calculator and start managing your construction waste more efficiently.</p>
+                
+                <a href="https://www.example.com/waste-calculator" class="button" target="_blank">Access the Waste Calculator</a>
+                
+                <h3>Other Resources</h3>
+                <p>Here are some other tools and resources that can help you optimize waste management on your construction projects:</p>
+                
+                <ul>
+                    <li><a href="https://www.example.com/resource1" target="_blank">Building Material Reuse Association Tools</a></li>
+                    <li><a href="https://www.example.com/resource2" target="_blank">EPA Waste Diversion Calculator</a></li>
+                    <li><a href="https://www.example.com/resource3" target="_blank">WRAP Construction Waste Reduction Tool</a></li>
+                </ul>
+            </div>
+
+            <!-- Educational Content -->
+            <div class="content">
+                <h2 class="section-title">Educational Content</h2>
+                <p>We provide educational resources such as webinars, online courses, and guides on how to manage C&D waste sustainably. Check out our resource center for more information.</p>
+            </div>
+
+            <!-- Resource Center -->
+            <div class="content">
+                <h2 class="section-title">Resource Center</h2>
+                <p>Visit our resource center for detailed articles, research papers, and case studies on best practices for C&D waste management.</p>
+                <div class="media">
+                    <img src="images/resource-center.jpg" alt="Resource Center Image">
+                </div>
+            </div>
+
+            <!-- Video Section -->
+            <div class="content">
+                <h2 class="section-title">Watch Our Introduction Video</h2>
+                <div class="media">
+                    <video width="560" height="315" controls>
+                        <source src="C:\Users\user\Documents\ipr projectros\one_123.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+
+            <!-- Logout Button --> 
+            <button onclick="logOut()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between Login and Register Forms
+        document.getElementById("show-register").addEventListener("click", function() {
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("register-container").style.display = "block";
+        });
+
+        document.getElementById("show-login").addEventListener("click", function() {
+            document.getElementById("register-container").style.display = "none";
+            document.getElementById("login-container").style.display = "block";
+        });
+
+        // Handle Login
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username && password) {
+                alert("Logged in successfully!");
+                document.getElementById("home-container").style.display = "block";
+                document.getElementById("login-container").style.display = "none";
+            } else {
+                alert("Please fill in both fields.");
+            }
+        });
+
+        // Handle Registration
+        document.getElementById("register-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("new-username").value;
+            const password = document.getElementById("new-password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password === confirmPassword) {
+                alert("Registration successful!");
+                document.getElementById("register-container").style.display = "none";
+                document.getElementById("login-container").style.display = "block";
+            } else {
+                alert("Passwords do not match!");
+            }
+        });
+
+        // Logout function
+        function logOut() {
+            alert("You have logged out.");
+            document.getElementById("home-container").style.display = "none";
+            document.getElementById("login-container").style.display = "block";
+        }
+
+        // Function to read and display Excel data
+        function readExcel() {
+            // Get the file input element
+            const fileInput = document.getElementById("excel-file");
+            const file = fileInput.files[0];
+                 
+            if (file) {
+                const reader = new FileReader();
+                reader.readAsBinaryString(file);
+
+                reader.onload = function(event) {
+                    const data = event.target.result;
+
+                    // Use SheetJS to read the Excel file
+                    const workbook = XLSX.read(data, { type: 'binary' });
+                    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+
+                    // Convert sheet data to JSON
+                    const jsonData = XLSX.utils.sheet_to_json(sheet);
+
+                    // Get table body to populate
+                    const tableBody = document.getElementById("excel-data-table").getElementsByTagName("tbody")[0];
+
+                    // Clear previous data
+                    tableBody.innerHTML = "";
+
+                    // Loop through data and add rows to the table
+                    jsonData.forEach(row => {
+                        const newRow = tableBody.insertRow();
+
+                        const cell1 = newRow.insertCell(0);
+                        const cell2 = newRow.insertCell(1);
+                        const cell3 = newRow.insertCell(2);
+
+                        cell1.innerText = row["Waste Type"] || "N/A";
+                        cell2.innerText = row["Amount"] || "N/A";
+                        cell3.innerText = row["Recycling Method"] || "N/A";
+                    });
+
+                     // Show the data container
+                     document.getElementById("excel-data-container").style.display = "block";
+                };
+
+                reader.onerror = function() {
+                    alert("Error reading the Excel file.");
+                };
+            } else {
+                alert("Please select a file to upload.");
+            }
+        }
+
+    </script>
+</body>
+</html>  
